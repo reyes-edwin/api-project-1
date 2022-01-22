@@ -7,6 +7,7 @@ export class LocationFromIP extends LitElement {
     return 'location-from-ip';
   }
 
+  // set the values to null.
   constructor() {
     super();
     this.locationEndpoint = 'https://freegeoip.app/json/';
@@ -21,6 +22,7 @@ export class LocationFromIP extends LitElement {
     };
   }
 
+  // This was a little confusing.
   firstUpdated(changedProperties) {
     if (super.firstUpdated) {
       super.firstUpdated(changedProperties);
@@ -28,8 +30,10 @@ export class LocationFromIP extends LitElement {
     this.getGEOIPData();
   }
 
+  // can you go more in details with async?
   async getGEOIPData() {
     const IPClass = new UserIP();
+    // don't know what await means. Does it mean it's waiting for the IP address
     const userIPData = await IPClass.updateUserIP();
     return fetch(this.locationEndpoint + userIPData.ip)
       .then(resp => {
